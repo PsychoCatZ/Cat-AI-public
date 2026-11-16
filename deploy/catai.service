@@ -1,0 +1,37 @@
+[Unit]
+Description=CatAI Telegram Business secretary
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=300
+StartLimitBurst=5
+
+[Service]
+Type=simple
+User=catai
+Group=catai
+WorkingDirectory=/opt/catai
+EnvironmentFile=/etc/catai/catai.env
+Environment=STATE_PATH=/var/lib/catai/state.sqlite3
+ExecStart=/opt/catai/.venv/bin/catai
+Restart=on-failure
+RestartSec=10
+TimeoutStopSec=80
+StateDirectory=catai
+StateDirectoryMode=0700
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+MemoryMax=192M
+MemorySwapMax=0
+CPUQuota=25%
+LimitCORE=0
+
+[Install]
+WantedBy=multi-user.target

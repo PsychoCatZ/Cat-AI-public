@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "catai-secretary"
+version = "0.1.0"
+description = "Telegram Business AI secretary with explicit conversation consent"
+requires-python = ">=3.12"
+dependencies = []
+
+[project.scripts]
+catai = "catai.app:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
