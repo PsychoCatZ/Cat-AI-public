@@ -204,7 +204,7 @@ class Secretary:
                 offset = len(text[:text.index(phrase)].encode('utf-16-le')) // 2
                 options['entities'].append({'type': 'text_link', 'offset': offset,
                     'length': len(phrase.encode('utf-16-le')) // 2,
-                    'url': f'https://t.me/{username}?text={quote(phrase, safe="")}'})
+                    'url': f'tg://resolve?domain={username}&text={quote(phrase, safe="")}'})
         self.tg.call('sendMessage', business_connection_id=cid, chat_id=chat,
                      text=text, link_preview_options={'is_disabled': True}, **options)
         return True
